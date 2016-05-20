@@ -18,6 +18,8 @@ go to the code directory
 create a music folder and copy music into the folder
 `
     mkdir music
+` 
+`
     cp ~/Music/*.mp3 music
 
 ` 
