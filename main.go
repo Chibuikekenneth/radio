@@ -43,8 +43,6 @@ func conchandler(w http.ResponseWriter, r *http.Request, c *chan []byte) {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-
-	//log.Println("dfgdfg handler")
 	parentFolder := "./music"
 	file, err := os.Open(parentFolder)
 
@@ -148,23 +146,6 @@ func concplayer(c *[]*chan []byte) {
 				*v <- buf[0:nr]
 
 			}
-			//	c <- buf[0:nr]
-			/*
-				for _, c := range connpool {
-					writer := bufio.NewWriter(c)
-
-					//	writer.Header().Set("Content-Type", "audio/mpeg")
-
-					nw, ew := writer.Write(buf[0:nr])
-					if ew == nil && nw != nr {
-						ew = io.ErrShortWrite
-					}
-					if ew != nil {
-						err = ew
-					}
-
-				}
-			*/
 			offset = int64(nr) + int64(offset)
 			log.Println(offset)
 			time.Sleep(2 * time.Second)
@@ -174,7 +155,6 @@ func concplayer(c *[]*chan []byte) {
 }
 
 func player() {
-	//log.Println("dfgdfg handler")
 	parentFolder := "./music"
 	file, err := os.Open(parentFolder)
 
@@ -269,38 +249,4 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
-
-	/*	mutex := &sync.Mutex{}
-
-		ln, err := net.Listen("tcp", "localhost:8080")
-
-		if err != nil {
-			log.Fatal(err)
-
-		}
-		go func() {
-
-			for {
-				conn, err := ln.Accept()
-				if err != nil {
-					log.Println(err)
-					continue
-
-				}
-				log.Println(conn)
-				mutex.Lock()
-				connpool = append(connpool, conn)
-				mutex.Unlock()
-				//go HandleIncoming(conn)
-
-			}
-
-		}()
-
-		go player()
-
-		for t := range time.Tick(5 * time.Minute) {
-			log.Println(t)
-		}
-	*/
 }
