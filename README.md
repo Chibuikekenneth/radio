@@ -1,7 +1,7 @@
 # An attempt at creating a simultaneous streaming service, similar to internet radio
 
 
-The plays music in a "music directory at the root of the app".
+This plays music in a "music directory at the root of the app".
 
 ##How to run 
 First, pull the repository and dependencies with go get.
